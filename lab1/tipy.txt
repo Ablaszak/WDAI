@@ -1,0 +1,9 @@
+Ćwiczenie 3
+Można użyć grida albo flexa (najlepsze rozwiązanie)
+Ewentualnie tekstowo z breakami (gorsze rozwiązanie)
+
+Projekt (www)
+To co jest napisane to tylko przykład, można od niego odbiec/wybrać dowolny temat.
+Korzystamy z HTML5
+Ej zrobię stronę o kawe, w HOME będą kafelki z różnymi metodami parzenia i pod każdym kafelkiem będzie link do opisu tej metody.
+Na dole każdej podstrony metody będzie formularz do zadania pytania o tę metodę
