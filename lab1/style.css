@@ -1,16 +1,28 @@
-html {
-      background-color: #DDBEAA;
-      height: 100vh;
+body
+{
+    background-color: whitesmoke;
+}
+.LinkRed
+{
+    color: red;
 }
 
-body {
-      height: 100vh;
-      margin: 0;
+.LinkYellow
+{
+    color: orange;
 }
 
-.main-container {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.LinkGreen
+{
+    color: green;
+}
+
+.img
+{
+    width: 20%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
