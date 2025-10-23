@@ -35,7 +35,12 @@ table, th, td
     gap: 11px;
 }
 
-.sqr
+.sqr {
+    height: 100px;
+    width: 100px;
+}
+
+.img_as_sqr
 {
     height: 100px;
     width: 100px;
