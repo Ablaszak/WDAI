@@ -1,36 +1,29 @@
-body
-{
+body {
     background-color: whitesmoke;
 }
-.LinkRed
-{
+.LinkRed {
     color: red;
 }
 
-.LinkYellow
-{
+.LinkYellow {
     color: orange;
 }
 
-.LinkGreen
-{
+.LinkGreen {
     color: green;
 }
 
-.img
-{
+.img {
     width: 20%;
 }
 
-table, th, td
-{
+table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 10px;
 }
 
-.container
-{
+.container {
     display: flex;
     gap: 11px;
 }
@@ -40,8 +33,7 @@ table, th, td
     width: 100px;
 }
 
-.img_as_sqr
-{
+.img_as_sqr {
     height: 100px;
     width: 100px;
 }
