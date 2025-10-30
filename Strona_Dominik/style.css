@@ -9,7 +9,6 @@ body{
 }
 
 .link{
-
   display: block;
   width: 30%;
   margin: 1vh;
@@ -18,8 +17,12 @@ body{
   text-decoration: none;
   background: navajowhite;
   padding: 3%;
+  transition: transform 0.5s;
 }
 
+.link:hover{
+  transform: scale(1.2);
+}
 .link:visited{
   color: black;
 }
