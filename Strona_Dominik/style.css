@@ -9,6 +9,7 @@ body{
 }
 
 .link{
+  color: black;
   display: block;
   width: 30%;
   margin: 1vh;
@@ -23,6 +24,68 @@ body{
 .link:hover{
   transform: scale(1.2);
 }
+
+.link:active{
+  transform: scale(1.1);
+}
+
 .link:visited{
   color: black;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  display: flex;
+  justify-content: left;
+}
+
+.navbar li a {
+  display: block;
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  background-color: bisque;
+}
+
+.navbar li a:active{
+  background-color: burlywood;
+}
+.navbar a.active{
+  background-color: antiquewhite;
+}
+
+.dropdown{
+  float: left;
+  overflow: hidden;
+}
+.dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  position: absolute;
+  background-color: white;
+  transition: max-height 0.4s, opacity 0.4s;
+}
+
+.dropdown:hover .dropdown-content {
+  max-height: 30vh;
+  opacity: 1;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
 }
