@@ -34,6 +34,7 @@ body{
 }
 
 .navbar {
+    z-index: 10;
     position: fixed;
     top: 0;
     left: 0;
@@ -88,4 +89,15 @@ body{
     left: 0;
     width: 100%;
     text-align: center;
+}
+
+.head_img{
+  position: fixed;
+  top: 0;
+  align-content: center;
+  text-align: center;
+  /*background-position: center; */
+  background-image: url("./img/raccoon.jpg");
+  width: 100vw;
+  height: 45vh;
 }
