@@ -98,8 +98,9 @@ body{
   text-align: center;
   font-size: 200%;
   color: white;
-  /*background-position: center; */
+  background-position: center;
   background-image: url("./img/raccoon.jpg");
+  background-size: cover;
   width: 100vw;
   height: 45vh;
 }
