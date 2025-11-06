@@ -1,11 +1,7 @@
 body{
-    background: antiquewhite;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction:column;
+  background: antiquewhite;
+  margin: 0;
+  min-height: 100vh;
 }
 
 .link{
@@ -50,7 +46,7 @@ body{
 .navbar li a {
     display: block;
     color: black;
-    padding: 14px 16px;
+    padding: 1.75vh 1.75vh;
     text-decoration: none;
 }
 
@@ -84,7 +80,6 @@ body{
 }
 
 .footer{
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -92,15 +87,24 @@ body{
 }
 
 .head_img{
-  position: fixed;
-  top: 0;
   align-content: center;
   text-align: center;
   font-size: 200%;
   color: white;
   background-position: center;
-  background-image: url("./img/raccoon.jpg");
   background-size: cover;
   width: 100vw;
   height: 45vh;
+}
+
+.mid_txt{
+  margin: 5vh 20vw 5vh 20vw;
+}
+
+
+table, th, td {
+  background-color: cornsilk;
+  border: 1px /* tutaj specjalnie px*/ solid black;
+  border-collapse: collapse;
+  padding: 1.75vw;
 }
