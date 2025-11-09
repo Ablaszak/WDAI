@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <title>V60</title>
+</head>
+
+
+<body class="linktree">
+  <nav>
+    <ul class="navbar">
+
+      <li><a href="linktree.html"><i class="fa fa-fw fa-link"></i></a></li>
+      <li><a href="O%20kawie.html"><i class="fa fa-fw fa-home"></i></a></li>
+
+      <li><div class="dropdown">
+        <a href="Parzenie%20Kawy.html"><i class="fa fa-fw fa-coffee"></i></a>
+        <div class="dropdown-content">
+          <a href="O%20kawie.html" class="active">Tu będą</a>
+          <a href="Parzenie%20Kawy.html">różne metody</a>
+          <a href="Parzenie%20Kawy.html">parzenia kawy</a>
+        </div>
+      </div></li>
+
+      <li><a href="Zadaj%20pytanie.html"><i class="fa fa-fw fa-envelope"></i></a></li>
+    </ul>
+  </nav>
+
+  <div class="head_img" style='background-image: url("./img/firstimg.jpg")'><h1>Zaparzmy V60!</h1><p>Po więcej informacji o tej i innych metodach parzenia zajrzyj na stronę główną</p></div>
+
+  <p id="kurwa">30</p>
+  <button onclick="chuj()">Click me</button>
+  <script>
+      function chuj(){
+          let sec = 30;
+          let timer = setInterval(function(){
+              document.getElementById('kurwa').innerHTML=''+sec;
+              sec--;
+              if (sec < 0) {
+                  clearInterval(timer);
+              }
+          }, 1000);
+      }
+  </script>
+</body>
+</html>
+
