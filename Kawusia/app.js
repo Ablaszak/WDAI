@@ -1,11 +1,15 @@
-// Start with an initial value of 20 seconds
-const TIME_LIMIT = 20;
+// we tu dodaj jakiś ładny opis że to kradzione ale tak po mojemu kradzione xD
+let TIME_LIMIT = 45;
 const FULL_DASH_ARRAY = 283;
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
+
+// Moje rzeczy, coffee specific:
+let brewTimes = [0,0,0,0,0]
+let brewCycle = 0;
 
 // kolor dla paska postępu timera
 const COLOR_CODES = {
@@ -55,7 +59,15 @@ function formatTime(time) {
     return `${seconds}`;
 }
 
-function startTimer() {
+function startTimer(input) {
+
+    // Moje rzeczy, coffee specific:
+    if(brewCycle === 0){
+        brewTimes = input;
+    }
+    TIME_LIMIT = brewTimes[brewCycle];
+    brewCycle++;
+
     timerInterval = setInterval(() => {
 
         // The amount of time passed increments by one // a tak na prawdę co 0.1
@@ -66,7 +78,16 @@ function startTimer() {
         // The time left label is updated
         document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
         setCircleDasharray();
+
+        if (timeLeft === 0) {
+            theEnd();
+        }
+
     }, 100);
+}
+
+function theEnd(){
+
 }
 
 // Divides time left by the defined time limit.

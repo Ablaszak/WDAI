@@ -132,6 +132,8 @@ table, th, td {
 /* Sets the containers height and width */
 .base-timer {
   position: relative;
+  min-width: 480px;
+  min-height: 480px;
   height: 20vw;
   width: 20vw;
 }
@@ -152,6 +154,8 @@ table, th, td {
   position: absolute;
 
   /* Size should match the parent container */
+  min-width: 480px;
+  min-height: 480px;
   width: 20vw;
   height: 20vw;
 
