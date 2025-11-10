@@ -1,6 +1,6 @@
 // Start with an initial value of 20 seconds
 const TIME_LIMIT = 20;
-
+const FULL_DASH_ARRAY = 283;
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
 let timePassed = 0;
@@ -63,5 +63,22 @@ function startTimer() {
 
         // The time left label is updated
         document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+        setCircleDasharray();
     }, 1000);
+}
+
+// Divides time left by the defined time limit.
+function calculateTimeFraction() {
+    const rawTimeFraction = timeLeft / TIME_LIMIT;
+    return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+}
+
+// Update the dasharray value as time passes, starting with 283
+function setCircleDasharray() {
+    const circleDasharray = `${(
+        calculateTimeFraction() * FULL_DASH_ARRAY
+    ).toFixed(0)} 283`;
+    document
+        .getElementById("base-timer-path-remaining")
+        .setAttribute("stroke-dasharray", circleDasharray);
 }
