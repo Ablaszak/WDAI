@@ -193,3 +193,7 @@ table, th, td {
 .base-timer__path-remaining.green {
   color: rgb(65, 184, 131);
 }
+
+.base-timer__path-remaining.coffee {
+  color: saddlebrown;
+}

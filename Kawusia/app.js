@@ -10,7 +10,7 @@ let timerInterval = null;
 // kolor dla paska postępu timera
 const COLOR_CODES = {
     info: {
-        color: "green"
+        color: "coffee"
     }
 };
 let remainingPathColor = COLOR_CODES.info.color;
