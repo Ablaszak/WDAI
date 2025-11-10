@@ -8,14 +8,14 @@
 </head>
 
 
-<body class="linktree">
+<body class="site">
   <nav>
     <ul class="navbar">
 
       <li><a href="linktree.html"><i class="fa fa-fw fa-link"></i></a></li>
       <li><a href="O%20kawie.html"><i class="fa fa-fw fa-home"></i></a></li>
 
-      <li><div class="dropdown">
+      <li><div class="dropdown active">
         <a href="Parzenie%20Kawy.html"><i class="fa fa-fw fa-coffee"></i></a>
         <div class="dropdown-content">
           <a href="O%20kawie.html" class="active">Tu będą</a>
@@ -30,20 +30,11 @@
 
   <div class="head_img" style='background-image: url("./img/firstimg.jpg")'><h1>Zaparzmy V60!</h1><p>Po więcej informacji o tej i innych metodach parzenia zajrzyj na stronę główną</p></div>
 
-  <p id="kurwa">30</p>
-  <button onclick="chuj()">Click me</button>
-  <script>
-      function chuj(){
-          let sec = 30;
-          let timer = setInterval(function(){
-              document.getElementById('kurwa').innerHTML=''+sec;
-              sec--;
-              if (sec < 0) {
-                  clearInterval(timer);
-              }
-          }, 1000);
-      }
-  </script>
+  <button onclick="startTimer()">Click me</button>
+
+  <!-- timer robiony wg tutorialu https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/-->
+  <div id="app"></div>
+  <script src="app.js"></script>
 </body>
 </html>
 
