@@ -49,6 +49,7 @@ function formatTime(time) {
         seconds = `0${seconds}`;
     } // fajne
 
+    seconds = Math.floor(seconds);
     // The output in MM:SS format
     // tutaj też zmieniłem na samo SS
     return `${seconds}`;
@@ -57,14 +58,15 @@ function formatTime(time) {
 function startTimer() {
     timerInterval = setInterval(() => {
 
-        // The amount of time passed increments by one
-        timePassed = timePassed += 1;
+        // The amount of time passed increments by one // a tak na prawdę co 0.1
+        // zmieniłem bo dzięki temu jest płynniej, jedyne co to teraz trzeba dodać zaokrąglanie liczby w timerze
+        timePassed = timePassed += 0.1;
         timeLeft = TIME_LIMIT - timePassed;
 
         // The time left label is updated
         document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
         setCircleDasharray();
-    }, 1000);
+    }, 100);
 }
 
 // Divides time left by the defined time limit.
