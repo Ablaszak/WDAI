@@ -1,5 +1,5 @@
 // we tu dodaj jakiś ładny opis że to kradzione ale tak po mojemu kradzione xD
-let TIME_LIMIT = 45;
+let TIME_LIMIT = 5;
 const FULL_DASH_ARRAY = 283;
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
@@ -46,25 +46,27 @@ document.getElementById("app").innerHTML = `
 function formatTime(time) {
     // Usunąłem minuty bo nigdy nie będę ich używał + chyba lepiej będzie to wyglądać z samymi sekundami
     // Seconds are the remainder of the time divided by 60 (modulus operator)
-    let seconds = time;
 
     // If the value of seconds is less than 10, then display seconds with a leading zero
+    let seconds = Math.ceil(time);
     if (seconds < 10) {
         seconds = `0${seconds}`;
     } // fajne
 
-    seconds = Math.floor(seconds);
     // The output in MM:SS format
     // tutaj też zmieniłem na samo SS
     return `${seconds}`;
 }
 
-function startTimer(input) {
+function startTimer(timeinput) {
+
+    clearInterval(timerInterval); // żeby ładnie się zapętlało
 
     // Moje rzeczy, coffee specific:
     if(brewCycle === 0){
-        brewTimes = input;
+        brewTimes = timeinput;
     }
+    timePassed = 0;
     TIME_LIMIT = brewTimes[brewCycle];
     brewCycle++;
 
@@ -79,7 +81,7 @@ function startTimer(input) {
         document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
         setCircleDasharray();
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             theEnd();
         }
 
@@ -87,13 +89,15 @@ function startTimer(input) {
 }
 
 function theEnd(){
-
+    if(brewCycle < 5){
+        startTimer(brewTimes);
+    }
+    else{clearInterval(timerInterval);}
 }
 
 // Divides time left by the defined time limit.
 function calculateTimeFraction() {
-    const rawTimeFraction = timeLeft / TIME_LIMIT;
-    return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+    return (timeLeft / TIME_LIMIT);
 }
 
 // Update the dasharray value as time passes, starting with 283

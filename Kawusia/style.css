@@ -113,6 +113,7 @@ body{
 .mid_txt{
   margin: 5vh 0 5vh 0;
   width: 66vw;
+  font-size: 1.66vh;
 }
 
 .mid_img{
@@ -121,10 +122,30 @@ body{
 }
 
 table, th, td {
+  font-size: 1.66vh;
   background-color: cornsilk;
   border: 1px /* tutaj specjalnie px*/ solid black;
   border-collapse: collapse;
   padding: 1.75vw;
+}
+
+.instruction{
+  display: flex;
+  align-items: center;
+  margin-outside: 2vh;
+  text-align: center;
+}
+
+.instruction img{
+  height: 30vh;
+  width: 30vh;
+}
+
+
+.startbutton{
+  height: 10vh;
+  width: 20vh;
+  font-size: 3vh;
 }
 
 /* poniższy css został skopiowany z poradnika i dostosowany pod moją stronę*/
@@ -164,7 +185,7 @@ table, th, td {
   justify-content: center;
 
   /* Sort of an arbitrary number; adjust to your liking */
-  font-size: 48px;
+  font-size: 7vh;
 }
 
 .base-timer__path-remaining {
