@@ -33,30 +33,31 @@
 <div class="head_img" style='background-image: url("./img/firstimg.jpg")'><h1>Zadaj pytanie!</h1></div>
 
 <h1>Tutaj możesz zadać pytanie</h1>
-<fieldset class="coffee-type">
-  <legend>Jaką kawę parzysz?</legend>
 
-  <div style="display: flex; justify-content: center">
-    <label>
-      <input type="radio" name="coffeeMethod" value="V60 " required>
-      V60
-    </label>
-
-    <label>
-      <input type="radio" name="coffeeMethod" value="Chemex ">
-      Aeropress
-    </label>
-
-    <label>
-      <input type="radio" name="coffeeMethod" value="Aeropress ">
-      French Press
-    </label>
-  </div>
-</fieldset>
 
 <form class="cf"
       action="https://formspree.io/f/xkgknkdz"
       method="POST">
+  <fieldset class="coffee-type">
+    <legend>Jaką kawę parzysz?</legend>
+
+    <div style="display: flex; justify-content: center">
+      <label>
+        <input type="radio" name="coffeeMethod" value="V60 " required>
+        V60
+      </label>
+
+      <label>
+        <input type="radio" name="coffeeMethod" value="Chemex ">
+        Aeropress
+      </label>
+
+      <label>
+        <input type="radio" name="coffeeMethod" value="Aeropress ">
+        French Press
+      </label>
+    </div>
+  </fieldset>
   <div class="half left cf">
     <input type="text" id="input-name" placeholder="Name">
     <input type="email" id="input-email" placeholder="Email address">
