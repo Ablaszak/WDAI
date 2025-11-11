@@ -14,14 +14,14 @@
     <ul class="navbar">
 
       <li><a href="linktree.html"><i class="fa fa-fw fa-link"></i></a></li>
-      <li><a href="O%20kawie.html"><i class="fa fa-fw fa-home"></i></a></li>
+      <li><a href="home.html"><i class="fa fa-fw fa-home"></i></a></li>
 
       <li><div class="dropdown active">
-        <a href="Parzenie%20Kawy.html"><i class="fa fa-fw fa-coffee"></i></a>
+        <a href="brew%20menu.html"><i class="fa fa-fw fa-coffee"></i></a>
         <div class="dropdown-content">
-          <a href="O%20kawie.html" class="active">Tu będą</a>
-          <a href="Parzenie%20Kawy.html">różne metody</a>
-          <a href="Parzenie%20Kawy.html">parzenia kawy</a>
+          <a href="V60.html" class="active">V60</a>
+          <a href="brew%20menu.html">Hemex</a>
+          <a href="brew%20menu.html">Aeropress</a>
         </div>
       </div></li>
 
@@ -35,14 +35,31 @@
   <div class="instruction"><h2>Przygotuj dripper V60</h2><img src="img/dripper.png" alt="v60 dripper"></div>
   <div class="instruction"><img src="img/filters.png" alt="v60 filters"><h2>Oraz odpowiednie filtry</h2></div>
   <div class="instruction"><h2>Zagrzej wodę do około 90-95°C</h2><img src="img/kettle.png" alt="gooseneck kettle"></div>
-  <div class="instruction"><img src="img/coffe_grounds.png" alt="grounded coffee"><h2>Zmiel kawę na średnio-drobno</h2></div>
+  <div class="instruction"><img src="img/coffe_grounds.png" alt="grounded coffee"><h2>Zmiel kawę na średnio-drobno</h2><p>(Ilość obliczysz poniżej)</p></div>
   <div class="mid_txt" style="text-align: center">
     <h3>Teraz najważniejszy punkt: do drippera włóż papierowy filtr i wsyp kawę.</h3>
-    <br>
     <h3>Następnie zalewaj podane ilości wody na początku każdego cyklu timera</h3>
+    <h4>Gdy będziesz miał wszystko gotowe, wciśnij przycisk, aby rozpocząć</h4>
   </div>
+
+  <label for="coffeewanted">Ilość przygotowywanej kawy(ml):</label>
+  <input type="number" id="coffeewanted" value="400">
+
+  <p id="grams">Na tę ilość wody przygotuj 25g ziaren</p>
+  <script>
+      let labelinput = document.getElementById("coffeewanted");
+      labelinput.addEventListener('input', calc_grams)
+      function calc_grams() {
+          let gr = labelinput.value;
+          gr = Math.ceil(parseFloat(gr) / 16); // dlatego to jest osobno, nie w js, żeby były różne ratio
+          if(isNaN(gr))
+              gr = 0;
+          document.getElementById("grams").innerHTML = 'Na tę ilość wody przygotuj ' + gr + 'g ziaren';
+      }
+  </script>
+
   <!-- timer robiony wg tutorialu https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/-->
-  <h4 id="pour">Gdy będziesz miał wszystko przygotowane, wciśnij przycisk poniżej, aby rozpocząć</h4>
+  <h4 id="pour" style="text-align: center">Tutaj pojawią się instrukcje na bieżąco</h4>
   <div id="app"></div>
   <script src="app.js"></script>
   <button class="startbutton" onclick="startTimer([45,30,30,30,30], [50,160,240,320,400])">START</button>

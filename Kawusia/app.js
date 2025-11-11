@@ -66,7 +66,17 @@ function startTimer(timeinput, waterinput) {
     // Moje rzeczy, coffee specific:
     if(brewCycle === 0){
         brewTimes = timeinput;
-        brewPours = waterinput;
+
+        let water = document.getElementById("coffeewanted").value;
+        let multiplier = parseFloat(water);
+
+        if(water <= 0){ // taka asercja o
+            document.getElementById("base-timer-label").innerHTML = 'Zła wartość!';
+            return 0;
+        }
+        multiplier /= waterinput[4];
+        for(let i=0; i<5; i++)
+            brewPours[i] = Math.floor(waterinput[i] * multiplier);
     }
     timePassed = 0;
     TIME_LIMIT = brewTimes[brewCycle];
