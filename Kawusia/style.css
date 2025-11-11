@@ -139,10 +139,17 @@ table, th, td {
   align-items: center;
   margin-outside: 2vh;
   text-align: center;
+  font-size: 75%;
+}
+
+.instruction-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .instruction img{
-  max-width: 30vw;
+  max-width: 40vw;
   height: auto;
 }
 
@@ -178,6 +185,9 @@ table, th, td {
     font-size: 200%;
   }
 
+  .instruction{
+    font-size: 100%;
+  }
   .instruction img {
     width: 30vh;
     height: 30vh;
