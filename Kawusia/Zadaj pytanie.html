@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="form.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V60</title>
+</head>
+
+<body class="site">
+
+<nav>
+  <ul class="navbar">
+
+    <li><a href="linktree.html"><i class="fa fa-fw fa-link"></i></a></li>
+    <li><a href="home.html"><i class="fa fa-fw fa-home"></i></a></li>
+
+    <li><div class="dropdown">
+      <a href="brew%20menu.html"><i class="fa fa-fw fa-coffee"></i></a>
+      <div class="dropdown-content">
+        <a href="V60.html">V60</a>
+        <a href="Chemex.html">Chemex</a>
+        <a href="Aeropress.html">Aeropress</a>
+      </div>
+    </div></li>
+
+    <li><a href="Zadaj%20pytanie.html" class="active"><i class="fa fa-fw fa-envelope"></i></a></li>
+  </ul>
+</nav>
+
+<div class="head_img" style='background-image: url("./img/firstimg.jpg")'><h1>Zadaj pytanie!</h1></div>
+
+<h1>Tutaj możesz zadać pytanie</h1>
+<fieldset class="coffee-type">
+  <legend>Jaką kawę parzysz?</legend>
+
+  <div style="display: flex; justify-content: center">
+    <label>
+      <input type="radio" name="coffeeMethod" value="V60 " required>
+      V60
+    </label>
+
+    <label>
+      <input type="radio" name="coffeeMethod" value="Chemex ">
+      Aeropress
+    </label>
+
+    <label>
+      <input type="radio" name="coffeeMethod" value="Aeropress ">
+      French Press
+    </label>
+  </div>
+</fieldset>
+
+<form class="cf"
+      action="https://formspree.io/f/xkgknkdz"
+      method="POST">
+  <div class="half left cf">
+    <input type="text" id="input-name" placeholder="Name">
+    <input type="email" id="input-email" placeholder="Email address">
+    <input type="text" id="input-subject" placeholder="Subject">
+  </div>
+  <div class="half right cf">
+    <textarea name="message" type="text" id="input-message" placeholder="Message"></textarea>
+  </div>
+  <input type="submit" value="Submit" id="input-submit">
+</form>
+</body>
+</html>
