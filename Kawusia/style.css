@@ -113,10 +113,6 @@ body{
   height: 45vh;
 }
 
-.head_img h1{
-  -webkit-text-stroke: 2px black;
-}
-
 .mid_txt{
   margin: 5vh 0 5vh 0;
   width: 66vw;
@@ -185,6 +181,10 @@ table, th, td {
   .head_img {
     height: 45vh;
     font-size: 200%;
+  }
+
+  .head_img h1{
+    -webkit-text-stroke: 2px black;
   }
 
   .instruction{
