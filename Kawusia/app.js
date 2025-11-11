@@ -1,5 +1,5 @@
 // we tu dodaj jakiś ładny opis że to kradzione ale tak po mojemu kradzione xD
-let TIME_LIMIT = 45;
+let TIME_LIMIT = 0;
 const FULL_DASH_ARRAY = 283;
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
@@ -45,15 +45,25 @@ document.getElementById("app").innerHTML = `
 `
 
 let txt=["","","","",""];
-function gen_txt(mode){
+function gen_txt(waterinput, multiplier, mode){
+
+    multiplier /= waterinput[4];
+    for(let i=0; i<5; i++)
+        brewPours[i] = Math.floor(waterinput[i] * multiplier);
+
     switch (mode){
         case(0):{ // v60 / chemex
+
             for(let i=0; i<5; i++)
                 txt[i] = 'Zalej do ' + brewPours[i] + ' ml wody';
             return;
         }
         case(1):{ // aeropress
-            txt[0] = 'Zalej do ';
+            txt[0] = 'Zalej do ' + brewPours[0] + ' wody';
+            txt[1] = 'Mieszaj jakby od tego zależało Twoje życie';
+            txt[2] = 'Zakręć sito z filtrem, odwróć aeropress i połóż na kubku/filiżance'
+            txt[3] = 'Przeciskaj aeropress'
+            txt[4] = 'Konie nie istnieją, the government is lying to you, JUST WAKE UP'
             return;
         }
     }
@@ -73,7 +83,7 @@ function formatTime(time) {
     return `${seconds}`;
 }
 
-function startTimer(timeinput, waterinput) {
+function startTimer(timeinput, waterinput, mode) {
 
     clearInterval(timerInterval); // żeby ładnie się zapętlało
 
@@ -83,18 +93,16 @@ function startTimer(timeinput, waterinput) {
 
         let water = document.getElementById("coffeewanted").value;
         let multiplier = parseFloat(water);
+        gen_txt(waterinput, multiplier, mode);
 
         if(water <= 0){ // taka asercja o
             document.getElementById("base-timer-label").innerHTML = 'Zła wartość!';
             return 0;
         }
-        multiplier /= waterinput[4];
-        for(let i=0; i<5; i++)
-            brewPours[i] = Math.floor(waterinput[i] * multiplier);
     }
     timePassed = 0;
     TIME_LIMIT = brewTimes[brewCycle];
-    document.getElementById("pour").innerHTML ='Zalej do ' + brewPours[brewCycle] + ' ml wody';
+    document.getElementById("pour").innerHTML = txt[brewCycle];
     brewCycle++;
 
     timerInterval = setInterval(() => {
