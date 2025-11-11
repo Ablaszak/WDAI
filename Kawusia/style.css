@@ -183,10 +183,6 @@ table, th, td {
     font-size: 200%;
   }
 
-  .head_img h1{
-    -webkit-text-stroke: 2px black;
-  }
-
   .instruction{
     font-size: 100%;
   }
