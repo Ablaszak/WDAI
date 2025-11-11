@@ -44,6 +44,20 @@ document.getElementById("app").innerHTML = `
 </div>
 `
 
+let txt=["","","","",""];
+function gen_txt(mode){
+    switch (mode){
+        case(0):{ // v60 / chemex
+            for(let i=0; i<5; i++)
+                txt[i] = 'Zalej do ' + brewPours[i] + ' ml wody';
+            return;
+        }
+        case(1):{ // aeropress
+            txt[0] = 'Zalej do ';
+            return;
+        }
+    }
+}
 function formatTime(time) {
     // Usunąłem minuty bo nigdy nie będę ich używał + chyba lepiej będzie to wyglądać z samymi sekundami
     // Seconds are the remainder of the time divided by 60 (modulus operator)
