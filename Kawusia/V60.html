@@ -12,7 +12,7 @@
   <nav>
     <ul class="navbar">
 
-      <li><a href="linktree.html"><i class="fa fa-fw fa-link"></i></a></li>
+      <li><a href="index.html"><i class="fa fa-fw fa-link"></i></a></li>
       <li><a href="O%20kawie.html"><i class="fa fa-fw fa-home"></i></a></li>
 
       <li><div class="dropdown active">
@@ -41,10 +41,17 @@
     <h3>Następnie zalewaj podane ilości wody na początku każdego cyklu timera</h3>
   </div>
   <!-- timer robiony wg tutorialu https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/-->
+  <h4 id="pour">Gdy będziesz miał wszystko przygotowane, wciśnij przycisk poniżej, aby rozpocząć</h4>
   <div id="app"></div>
   <script src="app.js"></script>
-  <button onclick="startTimer([45,30,30,30,30])" class="startbutton">START</button>
+  <button class="startbutton" onclick="startTimer([45,30,30,30,30], [50,160,240,320,400])">START</button>
+
+
+  <address>
+    <footer class="footer">
+      <h4>Autor strony: Adam Błasiak</h4>
+    </footer>
+  </address>
 
 </body>
 </html>
-

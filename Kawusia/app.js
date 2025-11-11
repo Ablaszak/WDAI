@@ -1,5 +1,5 @@
 // we tu dodaj jakiś ładny opis że to kradzione ale tak po mojemu kradzione xD
-let TIME_LIMIT = 5;
+let TIME_LIMIT = 45;
 const FULL_DASH_ARRAY = 283;
 // Initially, no time has passed, but this will count up
 // and subtract from the TIME_LIMIT
@@ -8,7 +8,8 @@ let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 
 // Moje rzeczy, coffee specific:
-let brewTimes = [0,0,0,0,0]
+let brewTimes = [0,0,0,0,0];
+let brewPours = [0,0,0,0,0];
 let brewCycle = 0;
 
 // kolor dla paska postępu timera
@@ -58,16 +59,18 @@ function formatTime(time) {
     return `${seconds}`;
 }
 
-function startTimer(timeinput) {
+function startTimer(timeinput, waterinput) {
 
     clearInterval(timerInterval); // żeby ładnie się zapętlało
 
     // Moje rzeczy, coffee specific:
     if(brewCycle === 0){
         brewTimes = timeinput;
+        brewPours = waterinput;
     }
     timePassed = 0;
     TIME_LIMIT = brewTimes[brewCycle];
+    document.getElementById("pour").innerHTML ='Zalej do ' + brewPours[brewCycle] + ' ml wody';
     brewCycle++;
 
     timerInterval = setInterval(() => {
@@ -92,7 +95,12 @@ function theEnd(){
     if(brewCycle < 5){
         startTimer(brewTimes);
     }
-    else{clearInterval(timerInterval);}
+    else{
+        clearInterval(timerInterval);
+        document.getElementById("pour").innerHTML ='Skończone, smacznej kawusi :)';
+        document.getElementById("base-timer-label").innerHTML = 'Koniec!';
+        brewCycle = 0;
+    }
 }
 
 // Divides time left by the defined time limit.
