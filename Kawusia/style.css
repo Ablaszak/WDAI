@@ -113,6 +113,10 @@ body{
   height: 45vh;
 }
 
+.head_img h1{
+  -webkit-text-stroke: 2px black;
+}
+
 .mid_txt{
   margin: 5vh 0 5vh 0;
   width: 66vw;
