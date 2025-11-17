@@ -299,3 +299,8 @@ table, th, td {
   height: auto;
   object-fit: cover;
 }
+
+.gallery video{
+  width: 80vw;
+  height: auto;
+}
