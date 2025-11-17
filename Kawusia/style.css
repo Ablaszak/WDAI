@@ -286,3 +286,16 @@ table, th, td {
   height: auto;
   margin-top: 5vh;
 }
+
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4vw;
+  margin: 10vw 10vw 10vw 10vw;
+}
+
+.gallery img{
+  width: 38vw;
+  height: auto;
+  object-fit: cover;
+}
