@@ -273,3 +273,9 @@ table, th, td {
 .base-timer__path-remaining.coffee {
   color: saddlebrown;
 }
+
+.vid_container video{
+  width: 66vw;
+  height: auto;
+  margin-top: 5vh;
+}
