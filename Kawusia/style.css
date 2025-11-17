@@ -170,7 +170,7 @@ table, th, td {
   color: black;
   display: block;
   font-size: 200%;
-  margin: 1vh;
+  margin: 1vh 1vh 20vh;
   border-radius: 5vw;
   text-align: center;
   text-decoration: none;
@@ -281,12 +281,6 @@ table, th, td {
   color: saddlebrown;
 }
 
-.vid_container video{
-  width: 66vw;
-  height: auto;
-  margin-top: 5vh;
-}
-
 .gallery{
   display: flex;
   flex-wrap: wrap;
@@ -300,7 +294,12 @@ table, th, td {
   object-fit: cover;
 }
 
-.gallery video{
+.vid_container{
   width: 80vw;
-  height: auto;
+  height: 45vw;
+}
+
+.vid_container iframe{
+  width: 100%;
+  height: 100%;
 }
