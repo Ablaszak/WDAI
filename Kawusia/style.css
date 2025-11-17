@@ -124,6 +124,13 @@ body{
   margin: 5vh 0 5vh 0;
   width: 66vw;
   font-size: 1.66vh;
+  color: #341d08;
+}
+
+.div_border{
+  border: 2px solid #341d08;
+  padding: 5vw;
+  border-radius: 5vw;
 }
 
 .mid_img{
