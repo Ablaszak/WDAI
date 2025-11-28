@@ -1,0 +1,21 @@
+body{
+  height: 100vh;
+  width: 30vw;
+}
+
+.The_Game{
+  width: 40vw;
+  height: 100vh;
+  position: relative;
+}
+
+.pipe{
+  position: absolute;
+  bottom: 0;
+  height: 70vh;
+  width: 6vw;
+  background-image: url("assets/Flappy Bird/pipe-green.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
