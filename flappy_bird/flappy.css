@@ -4,9 +4,15 @@ body{
 }
 
 .The_Game{
-  width: 40vw;
+  left: 30vw;
+  width: auto;
   height: 100vh;
   position: relative;
+  background-image: url("assets/Flappy Bird/background-day.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
 }
 
 .pipe{
@@ -18,4 +24,8 @@ body{
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.pipe.top{
+  transform: rotate(180deg);
 }
