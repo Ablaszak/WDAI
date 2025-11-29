@@ -29,3 +29,15 @@ body{
 .pipe.top{
   transform: rotate(180deg);
 }
+
+.birb{
+  height: 10vh;
+  width: 10vh;
+  position: fixed;
+  z-index: 1000;
+  background-image: url("assets/Flappy Bird/yellowbird-midflap.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}

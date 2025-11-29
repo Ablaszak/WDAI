@@ -27,8 +27,8 @@ function run(){
             pipeXdist = 0;
 
             // generate obstacle height and gap
-            let pipeYdist = (Math.random() * 15) + 5; // (5 , 20)
-            let mid = (Math.random() * 20) + 40; // (40, 60);
+            let pipeYdist = (Math.random() * 15) + 5; // (5 , 20)vh
+            let mid = (Math.random() * 20) + 40; // (40, 60)vh
 
             //actually create pipes, just don't touch the numbers pls
             let pipe = document.createElement("div");
