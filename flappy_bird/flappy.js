@@ -4,6 +4,8 @@ let basePos = 0
 //vertical bird speed, NEGATIVE values makes birb fly UP
 let birbSpeed = 0;
 const birb = document.getElementById("leBirb");
+let scoreCtr = 0;
+const scoreDisplay = document.getElementById("scoreDisplay");
 
 function run(){
 
@@ -14,6 +16,8 @@ function run(){
 
         if(!gameIsRunning)
             return;
+
+        let birbPos = birb.getBoundingClientRect();
 
         // delete and move pipes
         let pipes = game.querySelectorAll(".pipe");
@@ -27,9 +31,7 @@ function run(){
             }
 
             // check pipe-bird collision
-            let birbPos = birb.getBoundingClientRect();
             let pipePos = pipe.getBoundingClientRect();
-            //left-right
             if(
                 birbPos.right > pipePos.left &&
                 birbPos.left < pipePos.right &&
@@ -37,6 +39,25 @@ function run(){
                 birbPos.top < pipePos.bottom
             )
                 die();
+        }
+
+        // move and count score fields
+        let scores = game.querySelectorAll(".scoreField");
+
+        for(let score of scores){
+            let position = parseInt(score.style.left);
+            score.style.left = (position - speed) + 'px';
+
+            // check score-bird collision
+            let scorePos = score.getBoundingClientRect();
+            if(birbPos.right > scorePos.left){
+                score.remove();
+                scoreCtr++;
+                let num0 = Math.floor(scoreCtr/10);
+                let num1 = scoreCtr%10;
+                scoreDisplay.innerHTML = `<img alt="score number" src= "./assets/UI/Numbers/${num0}.png"><img alt="score number" src= "./assets/UI/Numbers/${num1}.png">`;
+            }
+
         }
 
         // move ground
@@ -113,6 +134,14 @@ function run(){
             topPipe.style.left = game.offsetWidth + "px";
 
             game.append(topPipe);
+
+            //spawn score field
+            let scoreF = document.createElement("div");
+            scoreF.className = "scoreField";
+            scoreF.style.left = game.offsetWidth + pipe.offsetWidth + "px";
+
+            game.append(scoreF);
+
         }
         pipeXdist ++;
         requestAnimationFrame(spawnPipe);
@@ -130,7 +159,7 @@ document.addEventListener('keydown', ev => {
         run();
     }
 
-    // Make birb fly upw
+    // Make birb fly up
     if(ev.key === " ")
         birbSpeed = -12;
 })
