@@ -103,6 +103,33 @@ function run(){
             requestAnimationFrame(falldown);
         }
 
+        displayScoreBoard();
+
+    }
+
+    function displayScoreBoard(){
+        let tempScoreBoard = JSON.parse(localStorage.getItem("scoreBoard1"));
+        if(tempScoreBoard == null)
+            tempScoreBoard = [0,0,0,0,0];
+        if(scoreCtr > tempScoreBoard[4])
+            tempScoreBoard[4] = scoreCtr;
+        tempScoreBoard.sort((a, b) => b - a);
+        localStorage.setItem("scoreBoard1", JSON.stringify(tempScoreBoard));
+
+        let boardDisplay = document.createElement("div");
+        boardDisplay.className = "scoreBoard";
+        let innerHtml = "<table>"
+        let rowCtr = 1;
+        for (let s of tempScoreBoard) {
+            innerHtml += `<tr>
+                        <td><img alt="score" src="./assets/UI/Numbers/${rowCtr}.png"></td>
+                        <td><img alt="score" src="./assets/UI/Numbers/${Math.floor(s/10)}.png"><img alt="score" src="./assets/UI/Numbers/${s%10}.png"></td>
+                        </tr>`;
+            rowCtr++;
+        }
+        innerHtml += "</table>";
+        boardDisplay.innerHTML = innerHtml;
+        document.body.appendChild(boardDisplay);
     }
 
     let pipeXdist = 9999;
