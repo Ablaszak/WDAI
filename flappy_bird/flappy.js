@@ -6,9 +6,9 @@ let birbSpeed = 0;
 const birb = document.getElementById("leBirb");
 let scoreCtr = 0;
 const scoreDisplay = document.getElementById("scoreDisplay");
-const frames = ["./assets/Flappy Bird/yellowbird-upflap.png",
-    "./assets/Flappy Bird/yellowbird-midflap.png",
-    "./assets/Flappy Bird/yellowbird-downflap.png"];
+const frames = ["./assets/Flappy%20Bird/yellowbird-upflap.png",
+    "./assets/Flappy%20Bird/yellowbird-midflap.png",
+    "./assets/Flappy%20Bird/yellowbird-downflap.png"];
 
 
 function run(){
@@ -200,12 +200,12 @@ let flapFrame = 0;
 function flap(){
     if(flapFrame === 3){
         flapFrame = 0;
-        birb.style.backgroundImage = frames[0];
+        birb.style.backgroundImage = frames[1];
         return;
     }
-    birb.style.backgroundImage = `url("${frames[flapFrame]}")`;
+    birb.innerHTML = `<img src=${frames[flapFrame]} alt="dindong">`;
     flapFrame ++;
-    setTimeout(flap, 100);
+    setTimeout(flap, 75);
 }
 
 let gameIsRunning = false;
