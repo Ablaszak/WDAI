@@ -6,7 +6,9 @@ let birbSpeed = 0;
 const birb = document.getElementById("leBirb");
 let scoreCtr = 0;
 const scoreDisplay = document.getElementById("scoreDisplay");
-
+const frames = ["./assets/Flappy Bird/yellowbird-upflap.png",
+    "./assets/Flappy Bird/yellowbird-midflap.png",
+    "./assets/Flappy Bird/yellowbird-downflap.png"];
 
 
 function run(){
@@ -194,7 +196,17 @@ function run(){
     requestAnimationFrame(move);
 }
 
-
+let flapFrame = 0;
+function flap(){
+    if(flapFrame === 3){
+        flapFrame = 0;
+        birb.style.backgroundImage = frames[0];
+        return;
+    }
+    birb.style.backgroundImage = `url("${frames[flapFrame]}")`;
+    flapFrame ++;
+    setTimeout(flap, 100);
+}
 
 let gameIsRunning = false;
 let lost = false;
@@ -209,6 +221,7 @@ document.addEventListener('keydown', ev => {
 
     // Make birb fly up
     if(ev.key === " " && gameIsRunning){
+        flap();
         birbSpeed = -12;
         let sound = new Audio("./assets/Sound Efects/wing.wav");
         sound.play();

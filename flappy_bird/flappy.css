@@ -38,29 +38,18 @@ body{
 }
 
 .birb{
+  background-image: url("./assets/Flappy Bird/yellowbird-midflap.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   position: fixed;
   left: 25vw;
   top: 40vh;
-  height: 3vh;
+  height: 3.9vh;
   width: 5.5vh;
   z-index: 1000;
   overflow: visible; /* pozwala na wyjście tła pseudo-elementu */
  }
-
-.birb::before {
-  content: "";
-  position: absolute;
-  top: -30%;
-  left: -30%;
-  width: 160%;
-  height: 160%;
-  background-image: url("assets/Flappy Bird/yellowbird-midflap.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -1;
-}
-
 
 .base{
   background-image: url("assets/Flappy Bird/base.png");
