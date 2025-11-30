@@ -36,17 +36,14 @@ function run(){
                 birbPos.bottom > pipePos.top &&
                 birbPos.top < pipePos.bottom
             )
-                    die();
+                die();
         }
 
         // move ground
         basePos -= speed;
         document.querySelector(".base").style.backgroundPositionX = basePos + "px";
 
-        // move the birb
-        birbSpeed += 1;
-        birb.style.top = birb.getBoundingClientRect().top + birbSpeed + "px";
-        birb.style.transform = "rotate(" + birbSpeed + "deg)";
+        moveBirb();
 
         // check collisions
         let pos = birb.getBoundingClientRect();
@@ -57,11 +54,34 @@ function run(){
         requestAnimationFrame(move);
     }
 
+    function moveBirb(){
+        birbSpeed += 1;
+        birb.style.top = birb.getBoundingClientRect().top + birbSpeed + "px";
+        birb.style.transform = "rotate(" + birbSpeed + "deg)";
+    }
+
     function die(){
+
+        // stop game
         gameIsRunning = false;
+
+        // spawn "gameover" sign
         let gameover = document.createElement("div");
         game.append(gameover);
         gameover.className = "gameover";
+
+        //go down
+        let base = document.getElementById("base");
+
+        requestAnimationFrame(falldown);
+
+        function falldown(){
+            if(birb.getBoundingClientRect().bottom > base.getBoundingClientRect().top)
+                return;
+            moveBirb();
+            requestAnimationFrame(falldown);
+        }
+
     }
 
     let pipeXdist = 9999;
