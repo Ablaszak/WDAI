@@ -4,8 +4,7 @@ body{
 }
 
 .The_Game{
-  left: 30vw;
-  width: auto;
+  width: 100vw;
   height: 100vh;
   position: relative;
   background-image: url("assets/Flappy Bird/background-day.png");
@@ -13,12 +12,13 @@ body{
   background-repeat: no-repeat;
   background-position: center;
   overflow: hidden;
+  z-index: 10;
 }
 
 .pipe{
   position: absolute;
   bottom: 0;
-  height: 70vh;
+  height: 60vh;
   width: 6vw;
   background-image: url("assets/Flappy Bird/pipe-green.png");
   background-size: contain;
@@ -31,13 +31,50 @@ body{
 }
 
 .birb{
-  height: 7.5vh;
-  width: 7.5vh;
   position: fixed;
+  left: 25vw;
+  top: 40vh;
+  height: 3vh;
+  width: 5.5vh;
   z-index: 1000;
+  overflow: visible; /* pozwala na wyjście tła pseudo-elementu */
+ }
+
+.birb::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
   background-image: url("assets/Flappy Bird/yellowbird-midflap.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: -1;
+}
 
+
+.base{
+  background-image: url("assets/Flappy Bird/base.png");
+  width: inherit;
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  background-repeat: repeat-x;
+  background-position-x: 0;
+}
+
+.gameover{
+  background-image: url("assets/UI/gameover.png");
+  position: fixed;
+  left: 30vw;
+  width: 40vw;
+  height: 10vw;
+  top: 20vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2000;
 }

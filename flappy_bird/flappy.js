@@ -1,13 +1,19 @@
 const game = document.querySelector(".The_Game");
 const speed = 5;
-
+let basePos = 0
 //vertical bird speed, NEGATIVE values makes birb fly UP
 let birbSpeed = 0;
 const birb = document.getElementById("leBirb");
 
 function run(){
 
+    if(!gameIsRunning)
+        return;
+
     function move(){
+
+        if(!gameIsRunning)
+            return;
 
         // delete and move pipes
         let pipes = game.querySelectorAll(".pipe");
@@ -19,18 +25,50 @@ function run(){
                 let position = parseInt(pipe.style.left);
                 pipe.style.left = (position - speed) + 'px';
             }
+
+            // check pipe-bird collision
+            let birbPos = birb.getBoundingClientRect();
+            let pipePos = pipe.getBoundingClientRect();
+            //left-right
+            if(
+                birbPos.right > pipePos.left &&
+                birbPos.left < pipePos.right &&
+                birbPos.bottom > pipePos.top &&
+                birbPos.top < pipePos.bottom
+            )
+                    die();
         }
 
-        // move the birb
-        birbSpeed++;
-        birb.style.top = birb.getBoundingClientRect().top + birbSpeed + "px";
+        // move ground
+        basePos -= speed;
+        document.querySelector(".base").style.backgroundPositionX = basePos + "px";
 
+        // move the birb
+        birbSpeed += 1;
+        birb.style.top = birb.getBoundingClientRect().top + birbSpeed + "px";
+        birb.style.transform = "rotate(" + birbSpeed + "deg)";
+
+        // check collisions
+        let pos = birb.getBoundingClientRect();
+        if(pos.bottom >= document.querySelector(".base").getBoundingClientRect().top
+            || pos.top <= game.getBoundingClientRect().top)
+            die();
 
         requestAnimationFrame(move);
     }
 
-    let pipeXdist = 0;
+    function die(){
+        gameIsRunning = false;
+        let gameover = document.createElement("div");
+        game.append(gameover);
+        gameover.className = "gameover";
+    }
+
+    let pipeXdist = 9999;
     function spawnPipe(){
+
+        if(!gameIsRunning)
+            return;
 
         //spawn pipes if there's enough space between them
         if(pipeXdist > 75)
@@ -61,10 +99,8 @@ function run(){
 
     }
 
-
     requestAnimationFrame(spawnPipe);
     requestAnimationFrame(move);
-
 }
 
 let gameIsRunning = false;
@@ -76,5 +112,5 @@ document.addEventListener('keydown', ev => {
 
     // Make birb fly upw
     if(ev.key === " ")
-        birbSpeed = -15;
+        birbSpeed = -12;
 })
