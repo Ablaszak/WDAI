@@ -187,6 +187,6 @@ document.addEventListener('keydown', ev => {
     }
 
     // Make birb fly up
-    if(ev.key === " ")
+    if(ev.key === " " && gameIsRunning)
         birbSpeed = -12;
 })
