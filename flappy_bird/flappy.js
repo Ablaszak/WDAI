@@ -7,10 +7,13 @@ const birb = document.getElementById("leBirb");
 let scoreCtr = 0;
 const scoreDisplay = document.getElementById("scoreDisplay");
 
+
+
 function run(){
 
     if(!gameIsRunning)
         return;
+    document.getElementById("message").remove();
 
     function move(){
 
@@ -37,8 +40,9 @@ function run(){
                 birbPos.left < pipePos.right &&
                 birbPos.bottom > pipePos.top &&
                 birbPos.top < pipePos.bottom
-            )
+            ){
                 die();
+            }
         }
 
         // move and count score fields
@@ -51,6 +55,8 @@ function run(){
             // check score-bird collision
             let scorePos = score.getBoundingClientRect();
             if(birbPos.right > scorePos.left){
+                let sound = new Audio("./assets/Sound Efects/point0.wav");
+                sound.play();
                 score.remove();
                 scoreCtr++;
                 let num0 = Math.floor(scoreCtr/10);
@@ -69,8 +75,9 @@ function run(){
         // check collisions
         let pos = birb.getBoundingClientRect();
         if(pos.bottom >= document.querySelector(".base").getBoundingClientRect().top
-            || pos.top <= game.getBoundingClientRect().top)
+            || pos.top <= game.getBoundingClientRect().top){
             die();
+        }
 
         requestAnimationFrame(move);
     }
@@ -85,6 +92,10 @@ function run(){
 
         // stop game
         gameIsRunning = false;
+        lost = true;
+
+        let sound1 = new Audio("./assets/Sound Efects/hit.wav");
+        sound1.play();
 
         // spawn "gameover" sign
         let gameover = document.createElement("div");
@@ -94,6 +105,9 @@ function run(){
         //go down
         let base = document.getElementById("base");
 
+        let sound = new Audio("./assets/Sound Efects/die.wav");
+        sound.play();
+
         requestAnimationFrame(falldown);
 
         function falldown(){
@@ -102,6 +116,7 @@ function run(){
             moveBirb();
             requestAnimationFrame(falldown);
         }
+
 
         displayScoreBoard();
 
@@ -179,14 +194,23 @@ function run(){
     requestAnimationFrame(move);
 }
 
+
+
 let gameIsRunning = false;
+let lost = false;
+
 document.addEventListener('keydown', ev => {
     if(ev.key === "Enter" && !gameIsRunning){
+        if(lost)
+            location.reload();
         gameIsRunning = true;
         run();
     }
 
     // Make birb fly up
-    if(ev.key === " " && gameIsRunning)
+    if(ev.key === " " && gameIsRunning){
         birbSpeed = -12;
+        let sound = new Audio("./assets/Sound Efects/wing.wav");
+        sound.play();
+    }
 })
