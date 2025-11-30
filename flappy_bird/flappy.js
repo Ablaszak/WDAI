@@ -1,6 +1,10 @@
 const game = document.querySelector(".The_Game");
 const speed = 5;
 
+//vertical bird speed, NEGATIVE values makes birb fly UP
+let birbSpeed = 0;
+const birb = document.getElementById("leBirb");
+
 function run(){
 
     function move(){
@@ -16,8 +20,15 @@ function run(){
                 pipe.style.left = (position - speed) + 'px';
             }
         }
+
+        // move the birb
+        birbSpeed++;
+        birb.style.top = birb.getBoundingClientRect().top + birbSpeed + "px";
+
+
         requestAnimationFrame(move);
     }
+
     let pipeXdist = 0;
     function spawnPipe(){
 
@@ -56,4 +67,14 @@ function run(){
 
 }
 
-run();
+let gameIsRunning = false;
+document.addEventListener('keydown', ev => {
+    if(ev.key === "Enter" && !gameIsRunning){
+        gameIsRunning = true;
+        run();
+    }
+
+    // Make birb fly upw
+    if(ev.key === " ")
+        birbSpeed = -15;
+})

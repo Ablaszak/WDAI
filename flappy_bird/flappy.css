@@ -31,8 +31,8 @@ body{
 }
 
 .birb{
-  height: 10vh;
-  width: 10vh;
+  height: 7.5vh;
+  width: 7.5vh;
   position: fixed;
   z-index: 1000;
   background-image: url("assets/Flappy Bird/yellowbird-midflap.png");
