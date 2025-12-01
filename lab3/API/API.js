@@ -16,10 +16,6 @@ async function load(){
 function show(){
 
     let filter_phrase = String(document.getElementById("filter").value).toLowerCase();
-    if(filter_phrase === "Filtruj")
-        filter_phrase = "";
-
-
     let table = document.getElementById("table");
 
     table.innerHTML = `
