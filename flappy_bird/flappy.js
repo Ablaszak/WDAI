@@ -57,7 +57,7 @@ function run(){
             // check score-bird collision
             let scorePos = score.getBoundingClientRect();
             if(birbPos.right > scorePos.left){
-                let sound = new Audio("./assets/Sound Efects/point0.wav");
+                let sound = new Audio("./assets/Sound Efects/point.wav");
                 sound.play();
                 score.remove();
                 scoreCtr++;
