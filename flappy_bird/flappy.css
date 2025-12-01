@@ -38,7 +38,6 @@ body{
 }
 
 .birb{
-  border: 3px solid black;
   position: fixed;
   left: 25vw;
   top: 40vh;
@@ -49,8 +48,11 @@ body{
  }
 
 .birb img{
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  left: -20%;
+  top: -20%;
+  height: 140%;
+  width: 140%;
 }
 
 .base{

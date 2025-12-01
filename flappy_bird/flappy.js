@@ -200,12 +200,12 @@ let flapFrame = 0;
 function flap(){
     if(flapFrame === 3){
         flapFrame = 0;
-        birb.style.backgroundImage = frames[1];
+        birb.innerHTML = `<img src="./assets/Flappy%20Bird/yellowbird-upflap.png" alt="dindong">`;
         return;
     }
     birb.innerHTML = `<img src=${frames[flapFrame]} alt="dindong">`;
     flapFrame ++;
-    setTimeout(flap, 75);
+    setTimeout(flap, 50);
 }
 
 let gameIsRunning = false;
