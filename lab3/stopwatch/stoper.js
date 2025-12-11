@@ -28,9 +28,7 @@ function stop(){
 }
 
 function reset(){
-    sec=0;
-    mins=0;
-    update();
+    location.reload();
 }
 
 function update(){
