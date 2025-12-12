@@ -43,7 +43,47 @@ def get_post(id):
         abort(404)
     return post
 
-@app.route("/user/login",  methods = ['POST'])
+@app.route("/api/register", methods = ['POST'])
+def register():
+    auth = request.get_json()
+    email = auth.get('email')
+    password = auth.get('password')
+
+    if not auth or not email or not password:
+        return make_response('Could not register!', 401, {'WWW-Authenticate': 'Basic-realm= "Login required!"'})
+
+    connection = sqlite3.connect('database.db')
+
+    #with open('users.sql') as f:
+    #    connection.executescript(f.read())
+
+    cur = connection.cursor()
+
+    # ukradzione z https://www.geeksforgeeks.org/python/hashing-passwords-in-python-with-bcrypt/
+
+    # converting password to array of bytes
+    bytes = password.encode('utf-8')
+
+    # generating the salt
+    salt = bcrypt.gensalt()
+
+    # Hashing the password
+    hash = bcrypt.hashpw(bytes, salt)
+
+    cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
+            (email, hash))
+
+    connection.commit()
+    connection.close()
+
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+    conn.close()
+    id = user['userID']
+
+    return jsonify({'ID': id})
+
+@app.route("/api/login",  methods = ['POST'])
 def login():
     auth = request.get_json()
     email = auth.get('email')
