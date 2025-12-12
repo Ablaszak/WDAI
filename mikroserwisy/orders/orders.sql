@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS posts;
 
-CREATE TABLE posts (
+CREATE TABLE orders (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    title TEXT NOT NULL,
-    content TEXT NOT NULL
+    userID int not null,
+    bookID int not null,
+    quantity int not null
 );

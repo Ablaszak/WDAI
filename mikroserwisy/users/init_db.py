@@ -1,4 +1,5 @@
 import sqlite3
+import bcrypt
 
 connection = sqlite3.connect('database.db')
 
@@ -8,12 +9,26 @@ with open('users.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('First Post', 'Content for the first post')
-            )
+# ukradzione z https://www.geeksforgeeks.org/python/hashing-passwords-in-python-with-bcrypt/
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
+# example password
+password = 'konienieistnieja'
+
+# converting password to array of bytes
+bytes = password.encode('utf-8')
+
+# generating the salt
+salt = bcrypt.gensalt()
+
+# Hashing the password
+hash = bcrypt.hashpw(bytes, salt)
+
+cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
+            ('a@a.com', hash))
+
+
+cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
+            ('b@b.com', 'toprawda')
             )
 
 connection.commit()

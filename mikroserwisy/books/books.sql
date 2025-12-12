@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS boooks;
 
-CREATE TABLE posts (
+CREATE TABLE books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Author text not null,
     title TEXT NOT NULL,
-    content TEXT NOT NULL
+    year int not null
 );
