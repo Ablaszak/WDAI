@@ -8,12 +8,12 @@ with open('books.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('First Post', 'Content for the first post')
+cur.execute("INSERT INTO books (title, author, year) VALUES (?, ?, ?)",
+            ('Ksionszka', 'Aótor', 2025)
             )
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
+cur.execute("INSERT INTO books (title, author, year) VALUES (?, ?, ?)",
+            ('Warunek', 'AGH', 560)
             )
 
 connection.commit()

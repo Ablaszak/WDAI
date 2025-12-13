@@ -9,25 +9,6 @@ import bcrypt
 
 app = Flask(__name__)
 
-def token_required(f):
-    @wraps(f)
-    def decorator(*args, **kwargs):
-        headers = request.headers
-        bearer = headers.get('Authorization')
-        if not bearer:
-            return make_response(jsonify({"message": "Brak tokena!"}), 401)
-
-        token = bearer.split()[1] 
-
-        try:
-            data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
-            if data['public_id'] != 'admin':
-                return make_response(jsonify({"message": "Niepoprawny token!"}), 401)
-            current_user = 'admin'
-        except:
-            return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
-        return f(*args, **kwargs)
-    return decorator
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')

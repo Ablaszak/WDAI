@@ -20,11 +20,18 @@ def token_required(f):
 
         try:
             data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
-            if data['public_id'] != 'admin':
-                return make_response(jsonify({"message": "Niepoprawny token!"}), 401)
-            current_user = 'admin'
+            publicID = data.get('public_id')
+
+            # get user
+            conn = sqlite3.connect('../users/database.db')
+            conn.row_factory = sqlite3.Row
+            user = conn.execute('SELECT * FROM users WHERE userID = ?', (publicID,)).fetchone()
+            conn.close()
+            if(user is None):
+                return make_response(jsonify({"message": "Token niepoprawny1!"}), 401)
+
         except:
-            return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
+            return make_response(jsonify({"message": "Token niepoprawny2!"}), 401)
         return f(*args, **kwargs)
     return decorator
 
@@ -35,55 +42,57 @@ def get_db_connection():
 
 def get_post(id):
     conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+    post = conn.execute('SELECT * FROM books WHERE id = ?',
                         (id,)).fetchone()
     conn.close()
     if post is None:
         abort(404)
     return post
 
-@app.route("/posts")
+@app.route("/api/books", methods=['GET'])
 def getPosts():
     conn = get_db_connection()
-    posts = conn.execute('SELECT * FROM posts').fetchall()
+    books = conn.execute('SELECT * FROM books').fetchall()
     conn.close()
     result = []
-    for item in posts:
+    for item in books:
       result.append({k: item[k] for k in item.keys()})
     return json.dumps(result)
 
-@app.route("/posts/<int:id>",  methods=['GET'])
+@app.route("/api/books/<int:id>",  methods=['GET'])
 def getPostById(id):
     post = get_post(id)
     result =  {k: post[k] for k in post.keys()}
     return json.dumps(result)
 
-@app.route("/posts",  methods=['POST'])
+@app.route("/api/books",  methods=['POST'])
 @token_required
 def createPost():
     title = request.get_json().get('title')
-    content = request.get_json().get('content')
+    author = request.get_json().get('author')
+    year = request.get_json().get('year')
     if not title:
         return 'Title is required!', 400
-
-    elif not content:
-        return 'Content is required!', 400
+    elif not author:
+        return 'Author is required!', 400
+    elif not year:
+        return 'Year is required!', 400
 
     else:
         conn = get_db_connection()
-        conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                     (title, content))
+        conn.execute('INSERT INTO books (title, author, year) VALUES (?, ?, ?)',
+                     (title, author, year))
         conn.commit()
         conn.close()
         return 'Post was successfully added', 200
+    
 
-
-@app.route("/posts/<int:id>", methods=['DELETE'])
+@app.route("/api/books/<int:id>", methods=['DELETE'])
 @token_required
 def deletePost(id):
     post = get_post(id)
     conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.execute('DELETE FROM books WHERE id = ?', (id,))
     conn.commit()
     conn.close()
 
