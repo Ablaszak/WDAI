@@ -16,22 +16,12 @@ def token_required(f):
         if not bearer:
             return make_response(jsonify({"message": "Brak tokena!"}), 401)
 
-        token = bearer.split()[1] 
+        token = bearer.split()[1]
 
-        try:
-            data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
-            publicID = data.get('public_id')
+        response = requests.get('http://127.0.0.1:3003/local/verify_token/{token}')
+        if(response.status_code == 401):
+            return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
 
-            # get user
-            conn = sqlite3.connect('../users/database.db')
-            conn.row_factory = sqlite3.Row
-            user = conn.execute('SELECT * FROM users WHERE userID = ?', (publicID,)).fetchone()
-            conn.close()
-            if(user is None):
-                return make_response(jsonify({"message": "Token niepoprawny1!"}), 401)
-
-        except:
-            return make_response(jsonify({"message": "Token niepoprawny2!"}), 401)
         return f(*args, **kwargs)
     return decorator
 
@@ -99,5 +89,5 @@ def deletePost(id):
     return 'deleted', 200
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='127.0.0.1', port=3001)
 

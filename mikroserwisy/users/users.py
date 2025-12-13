@@ -24,6 +24,19 @@ def get_post(id):
         abort(404)
     return post
 
+@app.route("/local/verify_token/<String:token>")
+def verify_token(token):
+    data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
+    publicID = data.get('public_id')
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE userID = ?', (publicID,)).fetchone()
+    conn.close()
+    if(user is None):
+        return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
+    return make_response(jsonify({"message": "Token poprawny"}), 200)
+
+
+
 @app.route("/api/register", methods = ['POST'])
 def register():
     auth = request.get_json()
