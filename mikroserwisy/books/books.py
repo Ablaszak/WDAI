@@ -77,26 +77,6 @@ def createPost():
         conn.close()
         return 'Post was successfully added', 200
 
-@app.route("/posts/<int:id>", methods=['PUT'])
-@token_required
-def editPost(id):
-    post = get_post(id)
-    title = request.get_json().get('title')
-    content = request.get_json().get('content')
-    if not title:
-        return 'Title is required!', 400
-
-    elif not content:
-        return 'Content is required!', 400
-    else:
-        conn = get_db_connection()
-        conn.execute('UPDATE posts SET title = ?, content = ?'
-                     ' WHERE id = ?',
-                     (title, content, id))
-        conn.commit()
-        conn.close()
-        return 'Post was successfully changed', 200
-     
 
 @app.route("/posts/<int:id>", methods=['DELETE'])
 @token_required
@@ -108,19 +88,6 @@ def deletePost(id):
     conn.close()
 
     return 'deleted', 200
-
-@app.route("/login",  methods = ['POST'])
-def login():
-    auth = request.get_json()
-    if not auth or not auth.get('username') or not auth.get('password'):
-        return make_response('Could not verify!', 401, {'WWW-Authenticate': 'Basic-realm= "Login required!"'})
-
-    if auth.get('username') == 'admin' and auth.get('password') == 'Test1234!':
-        token = jwt.encode({'public_id': 'admin'}, 'SECRET_KEY', 'HS256')
-        return make_response(jsonify({'token': token}), 201)
-
-    return make_response('Could not verify password!', 403, {'WWW-Authenticate': 'Basic-realm= "Wrong Password!"'})
-
 
 if __name__ == '__main__':
     app.run()
