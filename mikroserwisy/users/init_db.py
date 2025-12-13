@@ -26,10 +26,5 @@ hash = bcrypt.hashpw(bytes, salt)
 cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
             ('a@a.com', hash))
 
-
-cur.execute("INSERT INTO users (email, password) VALUES (?, ?)",
-            ('b@b.com', 'toprawda')
-            )
-
 connection.commit()
 connection.close()

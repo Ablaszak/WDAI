@@ -52,14 +52,18 @@ def register():
     if not auth or not email or not password:
         return make_response('Could not register!', 401, {'WWW-Authenticate': 'Basic-realm= "Login required!"'})
 
-    connection = sqlite3.connect('database.db')
+    # check if user exists
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+    conn.close()
+    if(user is not None):
+        return make_response('User already exists!', 409, {'WWW-Authenticate': 'Basic-realm= "User already exists!"'})
 
-    #with open('users.sql') as f:
-    #    connection.executescript(f.read())
+    connection = sqlite3.connect('database.db')
 
     cur = connection.cursor()
 
-    # ukradzione z https://www.geeksforgeeks.org/python/hashing-passwords-in-python-with-bcrypt/
+    # stolen from https://www.geeksforgeeks.org/python/hashing-passwords-in-python-with-bcrypt/
 
     # converting password to array of bytes
     bytes = password.encode('utf-8')
@@ -109,4 +113,3 @@ def login():
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3003)
-
