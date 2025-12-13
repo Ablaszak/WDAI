@@ -15,19 +15,13 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-def get_post(id):
-    conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
-                        (id,)).fetchone()
-    conn.close()
-    if post is None:
-        abort(404)
-    return post
-
-@app.route("/local/verify_token/<String:token>")
+@app.route("/local/verify_token/<token>")
 def verify_token(token):
-    data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
-    publicID = data.get('public_id')
+    try:
+        data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
+        publicID = data.get('public_id')
+    except:
+        return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
     conn = get_db_connection()
     user = conn.execute('SELECT * FROM users WHERE userID = ?', (publicID,)).fetchone()
     conn.close()

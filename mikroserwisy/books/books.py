@@ -18,7 +18,7 @@ def token_required(f):
 
         token = bearer.split()[1]
 
-        response = requests.get('http://127.0.0.1:3003/local/verify_token/{token}')
+        response = requests.get(f'http://127.0.0.1:3003/local/verify_token/{token}')
         if(response.status_code == 401):
             return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
 
@@ -74,8 +74,8 @@ def createPost():
                      (title, author, year))
         conn.commit()
         conn.close()
-        return 'Post was successfully added', 200
-    
+        return 'Book was successfully added', 200
+
 
 @app.route("/api/books/<int:id>", methods=['DELETE'])
 @token_required
