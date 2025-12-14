@@ -18,7 +18,7 @@ def token_required(f):
 
         token = bearer.split()[1]
 
-        response = requests.get('http://127.0.0.1:3003/local/verify_token/{token}')
+        response = requests.get(f'http://127.0.0.1:3003/local/verify_token/{token}')
         if(response.status_code == 401):
             return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
 
@@ -41,8 +41,12 @@ def get_post(id):
 
 @app.route("/api/orders/<int:id>",  methods=['GET'])
 def getPostById(id):
-    post = get_post(id)
-    result =  {k: post[k] for k in post.keys()}
+    conn = get_db_connection()
+    orders = conn.execute('SELECT * FROM orders WHERE userID = ?', (id,)).fetchall()
+    conn.close()
+    result = []
+    for item in orders:
+        result.append({k: item[k] for k in item.keys()})
     return json.dumps(result)
 
 
@@ -70,6 +74,44 @@ def createPost():
         conn.commit()
         conn.close()
         return 'Order was successfully added', 200
+
+@app.route("/api/orders/<int:id>",  methods=['PATCH'])
+@token_required
+def editPost(id):
+    userID = request.get_json().get('userID')
+    bookID = request.get_json().get('bookID')
+    quantity = request.get_json().get('quantity')
+
+    conn = get_db_connection()
+    currentOrder = conn.execute('SELECT * FROM orders WHERE id = ?',
+                            (id,)).fetchone()
+    print(currentOrder)
+    if not userID:
+        userID = currentOrder['userID']
+    if not bookID:
+        bookID = currentOrder['bookID']
+    if not quantity:
+        quantity = currentOrder['quantity']
+
+    headers = request.headers
+    bearer = headers.get('Authorization')
+    token = bearer.split()[1]
+    try:
+        data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
+        publicID = data.get('public_id')
+    except:
+        return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
+
+    if(publicID != userID):
+        conn.close()
+        return 'You can not change this order', 409
+
+    conn.execute('UPDATE orders SET userID = ?, bookID = ?, quantity = ?'
+                 ' WHERE id = ?',
+                 (userID, bookID, quantity, id))
+    conn.commit()
+    conn.close()
+    return 'Order was successfully changed', 200
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=3002)
