@@ -54,12 +54,20 @@ def getPostById(id):
 @app.route("/api/orders",  methods=['POST'])
 @token_required
 def createPost():
-    userID = request.get_json().get('userID')
+    headers = request.headers
+    bearer = headers.get('Authorization')
+    if not bearer:
+        return make_response(jsonify({"message": "Brak tokena!"}), 401)
+
+    token = bearer.split()[1]
+    try:
+        data = jwt.decode(token, 'SECRET_KEY', algorithms=['HS256'])
+        userID = data.get('public_id')
+    except:
+        return make_response(jsonify({"message": "Token niepoprawny!"}), 401)
     bookID = request.get_json().get('bookID')
     quantity = request.get_json().get('quantity')
-    if not userID:
-        return 'userID is required!', 400
-    elif not bookID:
+    if not bookID:
         return 'bookID is required!', 400
     elif not quantity:
         return 'quantity is required!', 400
