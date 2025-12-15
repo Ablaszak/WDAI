@@ -72,7 +72,7 @@ def createPost():
     elif not quantity:
         return 'quantity is required!', 400
     else:
-        response = requests.get('http://127.0.0.1:3001/api/books/2')
+        response = requests.get(f'http://127.0.0.1:3001/api/books/{bookID}')
         if(response.status_code == 404):
             return make_response(jsonify({"message": "We don't have this book!"}), 404)
 
