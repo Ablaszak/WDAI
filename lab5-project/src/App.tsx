@@ -1,7 +1,7 @@
-import Ternary from "./components/inne/Ternary.tsx";
+import Aktualizacja from "./components/inne/Aktualizacja.tsx";
 
 function App() {
-    return <Ternary/>;
+    return <Aktualizacja/>;
 }
 
 export default App
