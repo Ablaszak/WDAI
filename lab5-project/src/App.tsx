@@ -1,7 +1,7 @@
-    import NowyKoszyk from './components/koszyk/NowyKoszyk.tsx'
+    import Licznik from './components/liczniki/Licznik.tsx'
 
 function App() {
-    return <NowyKoszyk/>;
+    return <Licznik/>;
 }
 
 export default App
