@@ -1,7 +1,7 @@
-    import Koszyk from './components/koszyk/Koszyk.tsx'
+    import NowyKoszyk from './components/koszyk/NowyKoszyk.tsx'
 
 function App() {
-    return <Koszyk/>;
+    return <NowyKoszyk/>;
 }
 
 export default App

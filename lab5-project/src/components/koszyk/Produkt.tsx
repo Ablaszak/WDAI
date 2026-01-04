@@ -1,11 +1,11 @@
 interface ProduktProps{
-    name: string;
+    nazwa: string;
 }
 
 export default function Produkt(props: ProduktProps) {
     return (
         <>
-            <h3>{props.name}</h3>
+            <h3>{props.nazwa}</h3>
         </>
     )
 }
