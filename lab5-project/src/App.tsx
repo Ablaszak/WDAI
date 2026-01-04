@@ -1,7 +1,7 @@
-import Logowanie from "./components/formularze/Logowanie.tsx";
+import Ternary from "./components/inne/Ternary.tsx";
 
 function App() {
-    return <Logowanie/>;
+    return <Ternary/>;
 }
 
 export default App
