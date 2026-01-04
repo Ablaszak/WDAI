@@ -1,7 +1,7 @@
-import Formularz from "./components/formularze/Formularz.tsx";
+import Haslo from "./components/formularze/Haslo.tsx";
 
 function App() {
-    return <Formularz/>;
+    return <Haslo/>;
 }
 
 export default App
