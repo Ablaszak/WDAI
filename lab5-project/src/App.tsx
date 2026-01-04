@@ -1,9 +1,7 @@
+    import Koszyk from './components/koszyk/Koszyk.tsx'
+
 function App() {
-  return (
-    <>
-        <h1>S I U S I A K</h1>
-    </>
-  )
+    return <Koszyk/>;
 }
 
 export default App
