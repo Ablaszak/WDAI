@@ -1,7 +1,7 @@
-import NowyLicznik from './components/liczniki/NowyLicznik.tsx'
+import Formularz from "./components/formularze/Formularz.tsx";
 
 function App() {
-    return <NowyLicznik/>;
+    return <Formularz/>;
 }
 
 export default App
