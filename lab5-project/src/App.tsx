@@ -1,7 +1,7 @@
-    import Licznik from './components/liczniki/Licznik.tsx'
+import NowyLicznik from './components/liczniki/NowyLicznik.tsx'
 
 function App() {
-    return <Licznik/>;
+    return <NowyLicznik/>;
 }
 
 export default App
