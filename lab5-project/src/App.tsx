@@ -1,7 +1,7 @@
-import Haslo from "./components/formularze/Haslo.tsx";
+import Logowanie from "./components/formularze/Logowanie.tsx";
 
 function App() {
-    return <Haslo/>;
+    return <Logowanie/>;
 }
 
 export default App
