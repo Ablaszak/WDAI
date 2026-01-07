@@ -1,7 +1,7 @@
-import Aktualizacja from "./components/inne/Aktualizacja.tsx";
+import Studenci from "./components/studenci/Studenci.tsx";
 
 function App() {
-    return <Aktualizacja/>;
+    return <Studenci/>;
 }
 
 export default App
