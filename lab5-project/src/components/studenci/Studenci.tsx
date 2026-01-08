@@ -13,9 +13,9 @@ export default function Studenci(){
         {Students.map(item => {
             return(
                 <tr>
-                    <td>item.imie</td>
-                    <td>item.nazwisko</td>
-                    <td>item.rocznik</td>
+                    <td>{item.imie}</td>
+                    <td>{item.nazwisko}</td>
+                    <td>{item.rocznik}</td>
                 </tr>
             );
         })}
