@@ -1,7 +1,7 @@
-import Studenci from "./components/studenci/Studenci.tsx";
+import StudentManager from "./components/studenci/StudentManager.tsx";
 
 function App() {
-    return <Studenci/>;
+    return <StudentManager/>;
 }
 
 export default App
