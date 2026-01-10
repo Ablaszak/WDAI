@@ -1,7 +1,7 @@
-import StudentManager from "./components/studenci/StudentManager.tsx";
+import Licznik from "./components/efekty/Licznik.tsx";
 
 function App() {
-    return <StudentManager/>;
+    return <Licznik/>;
 }
 
 export default App
