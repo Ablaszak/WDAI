@@ -1,7 +1,7 @@
-import Tytul from "./components/efekty/Tytul.tsx";
+import Odliczanie from "./components/efekty/Odliczanie.tsx";
 
 function App() {
-    return <Tytul/>;
+    return <Odliczanie/>;
 }
 
 export default App
