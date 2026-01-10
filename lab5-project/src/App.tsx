@@ -1,7 +1,7 @@
-import Licznik from "./components/efekty/Licznik.tsx";
+import Tytul from "./components/efekty/Tytul.tsx";
 
 function App() {
-    return <Licznik/>;
+    return <Tytul/>;
 }
 
 export default App
