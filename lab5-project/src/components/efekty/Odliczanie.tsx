@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function Odliczanie() {
-    const [count, setCount] = useState(20);
+    const [count, setCount] = useState(150);
     const [intervalId, setIntervalId] = useState(null);
     const [isRunning, setIsRunning] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
