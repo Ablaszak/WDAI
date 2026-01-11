@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import "./Komentarz.css"
 
-interface komentarzProps{
+export interface komentarzProps{
     id : number;
     body : string;
     postId : number;

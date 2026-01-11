@@ -1,13 +1,7 @@
-import Komentarz from "./components/produkty/Komentarz.tsx";
+import Komentarze from "./components/produkty/Komentarze.tsx";
 
 function App() {
-    return <Komentarz
-        id={1}
-        body={"fajne takie nie za słodkie"}
-        postId={2}
-        likes={123}
-        user={{id: 3, username: "student", fullName:"debil"}}
-    />;
+    return <Komentarze/>;
 }
 
 export default App
