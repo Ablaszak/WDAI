@@ -1,10 +1,16 @@
-import {BrowserRouter} from "react-router-dom";
-import Licznik from "./components/liczniki/NowyLicznik.tsx";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import Article from "./pages/Article";
+import Add from "./pages/Add";
 
-function App() {
-    return(
-            <Licznik/>
-    )
+export default function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/article/:id" element={<Article />} />
+            <Route path="/add" element={<Add />} />
+        </Routes>
+    );
 }
-
-export default App
