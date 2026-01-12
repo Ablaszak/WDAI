@@ -1,6 +1,10 @@
+import {BrowserRouter} from "react-router-dom";
+import Licznik from "./components/liczniki/NowyLicznik.tsx";
 
 function App() {
-    return </>;
+    return(
+            <Licznik/>
+    )
 }
 
 export default App
